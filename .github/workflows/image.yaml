@@ -8,15 +8,16 @@ on:
 #    branches: [ "main" ]
 
 jobs:
- build:
-   name: "Build image"
-   runs-on: self-hosted
-   defaults:
-     run:
-       shell: bash
+  build:
+    #name: "Build image"
+    runs-on: self-hosted
+    defaults:
+      run:
+        shell: bash
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag diplo-app:${GITHUB_SHA}
 
