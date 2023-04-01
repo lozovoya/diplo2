@@ -36,8 +36,8 @@ jobs:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Push image
-      run: docker build . --file Dockerfile --tag diplo-app:${GITHUB_SHA}
+#    - name: Push image
+#      run: docker build . --file Dockerfile --tag diplo-app:${GITHUB_SHA}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v3
