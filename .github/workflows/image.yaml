@@ -44,8 +44,8 @@ jobs:
       with:
         push: true
         tags: |
-          username/package:latest
-          username/package:${{ github.sha }}
+          ${{ github.repository_owner }}/diplo-app:latest
+          ${{ github.repository_owner }}/diplo-app:${{ github.sha }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
