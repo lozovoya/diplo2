@@ -1,0 +1,19 @@
+namespace: develop
+
+app:
+  replicaCount: 2
+  name: diplo-app
+
+  image: ${{ github.repository_owner }}/diplo-app
+  tag: latest
+
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+  appPort: 80
+
