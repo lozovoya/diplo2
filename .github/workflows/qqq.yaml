@@ -12,7 +12,7 @@ env:
 
 
 jobs:
-#  build:
+  build:
 #    #name: "Build image"
 #    runs-on: self-hosted
 #    defaults:
