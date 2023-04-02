@@ -54,7 +54,7 @@ jobs:
       run: |-
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIV_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
+        chmod 700 ~/.ssh/id_rsa
 
     - name: Login to k8s cluster
       run: ssh -i ~/.ssh/id_rsa debian@$KUBE_MASTER_IP
