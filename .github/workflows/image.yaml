@@ -47,7 +47,7 @@ jobs:
         docker push ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA}
 
     - name: Login to k8s cluster
-      run: ssh -i ${{ secrets.SSH_KEY }} debian@${{ variables.KUBE_MASTER_IP }}
+      run: ssh -i ${{ secrets.SSH_KEY }} debian@${{ KUBE_MASTER_IP }}
 
     - name: Deploy
       run: |-
