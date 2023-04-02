@@ -63,9 +63,10 @@ jobs:
     - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@v0.1.8
       with:
-        host: $KUBE_MASTER_IP
+        host: 84.201.157.247
         username: debian
-        key: ~/.ssh/id_rsa
+        #key: ~/.ssh/id_rsa
+        key_path: ~/.ssh/id_rsa
         port: 22
         script: |
           kubectl set image deploy/diplo-app --namespace=develop diplo-app=ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA}
