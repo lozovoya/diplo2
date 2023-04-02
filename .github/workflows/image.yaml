@@ -45,13 +45,24 @@ jobs:
         echo $IMAGE_ID
         docker push ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA}
 
-    - name: Login to k8s cluster
-      run: ssh -i "${{ secrets.SSH_KEY }}" debian@${{ env.KUBE_MASTER_IP }}
+#    - name: Login to k8s cluster
+#      run: ssh -i "${{ secrets.SSH_KEY }}" debian@${{ env.KUBE_MASTER_IP }}
 
-    - name: Deploy
-      run: |-
-        kubectl set image deploy/diplo-app --namespace=develop diplo-app=ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA}
-        kubectl rollout restart deploy diplo-app --namespace=develop
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        host: ${{ env.KUBE_MASTER_IP }}
+        username: debian
+        key: ${{ secrets.SSH_PRIV_KEY }}
+        port: 22
+        script: |
+          kubectl set image deploy/diplo-app --namespace=develop diplo-app=ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA}
+          kubectl rollout restart deploy diplo-app --namespace=develop
+
+#    - name: Deploy
+#      run: |-
+#        kubectl set image deploy/diplo-app --namespace=develop diplo-app=ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA}
+#        kubectl rollout restart deploy diplo-app --namespace=develop
 
 #    - name: Build and push Docker image
 #      uses: docker/build-push-action@v3
