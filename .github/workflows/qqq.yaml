@@ -9,6 +9,7 @@ on:
 
 env:
  KUBE_MASTER_IP: ${{ vars.KUBE_MASTER_IP }}
+ SSH: ${{secrets.SSH_PRIV_KEY}}
 
 
 jobs:
@@ -65,7 +66,7 @@ jobs:
       with:
         host: 84.201.157.247
         username: debian
-        privateKey: ${{secrets.SSH_KEY}}}
+        privateKey: $SSH
         #key_path: ~/.ssh/id_rsa
         port: 22
         script: |
