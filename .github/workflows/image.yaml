@@ -43,6 +43,7 @@ jobs:
       run: |-
         export IMAGE_ID=ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA}
         echo $IMAGE_ID
+        echo ${{ KUBE_MASTER_IP }}
         docker push ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA}
 
 
@@ -53,7 +54,8 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
 
     - name: Login to k8s cluster
-      run: ssh -i ~/.ssh/id_rsa debian@${{ env.KUBE_MASTER_IP }}
+      run: |-
+        ssh -i ~/.ssh/id_rsa debian@${{ env.KUBE_MASTER_IP }}
 
 #    - name: executing remote ssh commands using ssh key
 #      uses: appleboy/ssh-action@v0.1.8
