@@ -40,7 +40,7 @@ jobs:
     - name: Push image
       run: |-
         export IMAGE_ID=ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA}
-        echo IMAGE_ID
+        echo $IMAGE_ID
         docker image ls --all
         docker push ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA}
 
