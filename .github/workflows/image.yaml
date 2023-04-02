@@ -8,7 +8,7 @@ on:
 #    branches: [ "main" ]
 
 env:
- KUBE_MASTER_IP: ${{ KUBE_MASTER_IP }}
+ KUBE_MASTER_IP: ${{ vars.KUBE_MASTER_IP }}
 
 
 jobs:
