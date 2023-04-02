@@ -65,7 +65,7 @@ jobs:
       with:
         host: 84.201.157.247
         username: debian
-        privateKey: ${{secrets.SSH_PRIV_KEY}}}
+        privateKey: ${{secrets.SSH_KEY}}}
         #key_path: ~/.ssh/id_rsa
         port: 22
         script: |
