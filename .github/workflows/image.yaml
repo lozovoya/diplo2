@@ -43,7 +43,7 @@ jobs:
       run: |-
         export IMAGE_ID=ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA}
         echo $IMAGE_ID
-        echo ${{ KUBE_MASTER_IP }}
+        echo ${{ env.KUBE_MASTER_IP }}
         docker push ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA}
 
 
