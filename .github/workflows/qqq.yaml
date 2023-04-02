@@ -61,11 +61,11 @@ jobs:
 
 
     - name: executing remote ssh commands using ssh key
-      uses: appleboy/ssh-action@v0.1.8
+      uses: garygrossgarten/github-action-ssh@release
       with:
         host: 84.201.157.247
         username: debian
-        key: ${{secrets.SSH_PRIV_KEY}}}
+        privateKey: ${{secrets.SSH_PRIV_KEY}}}
         #key_path: ~/.ssh/id_rsa
         port: 22
         script: |
