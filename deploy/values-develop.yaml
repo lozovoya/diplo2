@@ -4,8 +4,8 @@ app:
   replicaCount: 2
   name: diplo-app
 
-  image: ${{ github.repository_owner }}/diplo-app
-  tag: latest
+  image: ghcr.io/lozovoya/diplo-app
+  tag: 35a7899373a64053b997a2fdf34ee4a565716fa9
 
   resources:
     limits:
