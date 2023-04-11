@@ -1,15 +1,15 @@
-name: "Build and push image"
+name: "Build and push image, deploy to kuber"
 
 on:
   push:
     branches:
-    - main
+    - develop
 #  pull_request:
 #    branches: [ "main" ]
 
 env:
- KUBE_MASTER_IP: ${{ vars.KUBE_MASTER_IP }}
-
+  BRANCH: develop
+  IMAGE_ID: ghcr.io/${{ github.repository_owner }}/diplo-app-develop
 
 jobs:
   build:
@@ -28,10 +28,8 @@ jobs:
         go-version: 1.20
 
     - name: Build the Docker image
-#      run: docker build . --file Dockerfile --tag  ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA}
       run: |-
-        docker build . --file Dockerfile --tag  ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA} \
-                                            --tag  ghcr.io/${{ github.repository_owner }}/diplo-app:latest
+        docker build . --file Dockerfile --tag  $IMAGE_ID:${GITHUB_SHA} --tag  $IMAGE_ID:latest
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
@@ -58,7 +56,7 @@ jobs:
 
     - name: Deploy
       run: |
-        ssh -i ~/.ssh/id_rsa debian@$KUBE_MASTER_IP \
+        ssh -i ~/.ssh/id_rsa debian@${{ vars.KUBE_MASTER_IP }} \
         "kubectl set image deploy/diplo-app --namespace=develop diplo-app=ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA} && \
         kubectl rollout restart deploy diplo-app --namespace=develop"
 

@@ -23,7 +23,7 @@ spec:
         app: {{ .Values.app.name }}
     spec:
       containers:
-        - image: {{ .Values.app.image }}:{{ .Values.app.tag }}
+        - image: {{ .Values.app.image }}-{{ .Values.namespace}}:{{ .Values.app.tag }}
           imagePullPolicy: Always
           name: {{ .Values.app.name }}
           ports:
