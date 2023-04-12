@@ -43,9 +43,9 @@ jobs:
 
     - name: Push image
       run: |-
-        export IMAGE_ID=ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA}
-        echo $IMAGE_ID
-        docker push ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA}
+#        export IMAGE_ID=ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA}
+        echo $IMAGE_ID:${GITHUB_SHA}
+        docker push $IMAGE_ID:latest
 
 
     - name: Copy private key from environment variable to file
