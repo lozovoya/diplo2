@@ -9,7 +9,7 @@ on:
 
 env:
   BRANCH: develop
-  IMAGE_ID: ghcr.io/${{ github.repository_owner }}/diplo-app-develop
+  IMAGE_ID: ghcr.io/${{ github.repository_owner }}/diplo-app-${GITHUB_REF_NAME}
 
 jobs:
   build:
@@ -57,7 +57,7 @@ jobs:
     - name: Deploy
       run: |
         ssh -i ~/.ssh/id_rsa debian@${{ vars.KUBE_MASTER_IP }} \
-        "kubectl set image deploy/diplo-app --namespace=develop diplo-app=$IMAGE_ID && \
+        "kubectl set image deploy/diplo-app --namespace=develop diplo-app=$IMAGE_ID:${GITHUB_SHA} && \
         kubectl rollout restart deploy diplo-app --namespace=develop"
 
 
