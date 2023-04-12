@@ -9,7 +9,7 @@ on:
 
 env:
   BRANCH: develop
-  IMAGE_ID: ghcr.io/${{ github.repository_owner }}/diplo-app-${GITHUB_REF_NAME}
+  IMAGE_ID: ghcr.io/${{ github.repository_owner }}/diplo-app
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
 
     - name: Build the Docker image
       run: |-
-        docker build . --file Dockerfile --tag  $IMAGE_ID:${GITHUB_SHA} --tag $IMAGE_ID:${GITHUB_REF_NAME} --tag  $IMAGE_ID:latest
+        docker build . --file Dockerfile --tag  $IMAGE_ID-${GITHUB_REF_NAME}:${GITHUB_SHA} --tag  $IMAGE_ID-${GITHUB_REF_NAME}:latest
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
@@ -44,7 +44,7 @@ jobs:
     - name: Push image
       run: |-
         export IMAGE_ID=ghcr.io/${{ github.repository_owner }}/diplo-app-${GITHUB_REF_NAME}:${GITHUB_SHA}
-        echo $IMAGE_ID:${GITHUB_SHA}
+        echo $IMAGE_ID
         docker push $IMAGE_ID
 
 
@@ -57,7 +57,7 @@ jobs:
     - name: Deploy
       run: |
         ssh -i ~/.ssh/id_rsa debian@${{ vars.KUBE_MASTER_IP }} \
-        "kubectl set image deploy/diplo-app --namespace=develop diplo-app=$IMAGE_ID:${GITHUB_SHA} && \
+        "kubectl set image deploy/diplo-app --namespace=develop diplo-app=$IMAGE_ID-${GITHUB_REF_NAME}:${GITHUB_SHA} && \
         kubectl rollout restart deploy diplo-app --namespace=develop"
 
 
