@@ -43,7 +43,7 @@ jobs:
 
     - name: Push image
       run: |-
-        export IMAGE_ID=ghcr.io/${{ github.repository_owner }}/diplo-app-develop:${GITHUB_SHA}
+        export IMAGE_ID=ghcr.io/${{ github.repository_owner }}/diplo-app-${GITHUB_REF_NAME}:${GITHUB_SHA}
         echo $IMAGE_ID:${GITHUB_SHA}
         docker push $IMAGE_ID
 
@@ -57,7 +57,7 @@ jobs:
     - name: Deploy
       run: |
         ssh -i ~/.ssh/id_rsa debian@${{ vars.KUBE_MASTER_IP }} \
-        "kubectl set image deploy/diplo-app --namespace=develop diplo-app=ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA} && \
+        "kubectl set image deploy/diplo-app --namespace=develop diplo-app=$IMAGE_ID && \
         kubectl rollout restart deploy diplo-app --namespace=develop"
 
 
