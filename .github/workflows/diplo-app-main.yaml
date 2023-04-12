@@ -3,13 +3,13 @@ name: "Build and push image, deploy to kuber"
 on:
   push:
     branches:
-    - develop
+    - main
 #  pull_request:
 #    branches: [ "main" ]
 
 env:
   BRANCH: main
-  IMAGE_ID: ghcr.io/${{ github.repository_owner }}/diplo-app-develop
+  IMAGE_ID: ghcr.io/${{ github.repository_owner }}/diplo-app-main
 
 jobs:
   build:
@@ -56,7 +56,7 @@ jobs:
 
     - name: Deploy
       run: |
-        ssh -i ~/.ssh/id_rsa debian@${{ vars.KUBE_MASTER_IP }} \
+        ssh -i ~/.ssh/id_rsa debian@${{ vars.KUBE_PROD_MASTER_IP }} \
         "kubectl set image deploy/diplo-app --namespace=develop diplo-app=ghcr.io/${{ github.repository_owner }}/diplo-app:${GITHUB_SHA} && \
         kubectl rollout restart deploy diplo-app --namespace=develop"
 
