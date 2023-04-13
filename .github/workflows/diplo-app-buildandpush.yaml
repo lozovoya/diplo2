@@ -47,7 +47,7 @@ jobs:
       run: |-
         export IMAGE_ID=ghcr.io/${{ github.repository_owner }}/diplo-app-${GITHUB_REF_NAME}
         echo $IMAGE_ID
-        docker image push --all-tags $IMAGE_ID-${GITHUB_REF_NAME}:${GITHUB_SHA}
+        docker image push --all-tags $IMAGE_ID-${GITHUB_REF_NAME}
 
 
 
