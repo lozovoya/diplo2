@@ -5,7 +5,7 @@ app:
   name: diplo-app
 
   image: ghcr.io/lozovoya/diplo-app
-  tag: 35a7899373a64053b997a2fdf34ee4a565716fa9
+  tag: latest
 
   resources:
     limits:
