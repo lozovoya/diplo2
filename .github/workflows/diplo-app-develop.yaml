@@ -14,7 +14,6 @@ env:
   IMAGE_ID: ghcr.io/${{ github.repository_owner }}/diplo-app
 
 jobs:
-  uses: lozovoya/diplo2/.github/workflows/diplo-app-build.yaml@develop
   build:
     #name: "Build image"
     runs-on: self-hosted
@@ -24,6 +23,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
+    - name: test inherit
+      uses: lozovoya/diplo2/.github/actions/diplo-app-build.yaml@develop
 
     - name: Set up Go
       uses: actions/setup-go@v3
