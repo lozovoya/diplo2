@@ -2,8 +2,10 @@ name: "Build and push image, deploy to kuber"
 
 on:
   push:
-    branches:
-    - develop
+     tags:
+      - v1.*
+#    branches:
+#    - develop
 #  pull_request:
 #    branches: [ "main" ]
 
