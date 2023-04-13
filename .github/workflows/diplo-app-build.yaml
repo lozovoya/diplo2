@@ -2,6 +2,10 @@ name: "Build and push image, deploy to kuber"
 
 on:
   workflow_call:
+    inputs:
+          config-path:
+            required: true
+            type: string
 
 #    branches:
 #    - develop
