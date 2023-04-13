@@ -16,7 +16,9 @@ env:
 jobs:
   buildandpush:
     uses: lozovoya/diplo2/.github/workflows/diplo-app-buildandpush.yaml@develop
+    secrets: inherit
   deploy:
+    needs: buildandpush
     runs-on: self-hosted
     defaults:
       run:
