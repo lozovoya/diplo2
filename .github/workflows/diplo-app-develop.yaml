@@ -20,12 +20,10 @@ jobs:
     defaults:
       run:
         shell: bash
+  uses: lozovoya/diplo2/.github/workflows/diplo-app-build.yaml@develop
 
     steps:
     - uses: actions/checkout@v3
-
-    - name: test inherit
-      uses: lozovoya/diplo2/.github/workflows/diplo-app-build.yaml@develop
 
     - name: Set up Go
       uses: actions/setup-go@v3
