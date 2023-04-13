@@ -22,10 +22,10 @@ jobs:
         shell: bash
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: test inherit
-      uses: lozovoya/diplo2/blob/develop/.github/workflows/diplo-app-build.yaml@develop
+      uses: lozovoya/diplo2/.github/workflows/diplo-app-build.yaml@develop
 
     - name: Set up Go
       uses: actions/setup-go@v3
