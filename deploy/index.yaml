@@ -3,12 +3,12 @@ entries:
   diplo-app:
   - apiVersion: v2
     appVersion: "1.0"
-    created: "2023-04-13T22:11:25.662529+05:00"
+    created: "2023-04-13T23:04:00.258307+05:00"
     description: Helm deployment
-    digest: 95d97c9f6f52cc59f0bc858e30c01666217c60e3edad47eddd7fe330423066ec
+    digest: ef6d7057c2c36b6869fbd2664079abda11a6d3d009997b87b1c7da039935ae7a
     name: diplo-app
     type: application
     urls:
     - diplo-app-1.0.tgz
     version: "1.0"
-generated: "2023-04-13T22:11:25.662227+05:00"
+generated: "2023-04-13T23:04:00.257886+05:00"
