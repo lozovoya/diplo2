@@ -1,11 +1,7 @@
 name: "Build and push image, deploy to kuber"
 
 on:
-#  workflow_call:
-#    inputs:
-#          config-path:
-#            required: true
-#            type: string
+  workflow_call:
 
 #    branches:
 #    - develop
@@ -25,6 +21,7 @@ jobs:
         shell: bash
 
     steps:
+
     - uses: actions/checkout@v3
 
     - name: Set up Go
