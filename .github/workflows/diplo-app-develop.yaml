@@ -14,6 +14,8 @@ env:
   IMAGE_ID: ghcr.io/${{ github.repository_owner }}/diplo-app
 
 jobs:
+  qqq: lozovoya/diplo2/.github/workflows/diplo-app-build.yaml@develop
+    uses:
   build:
     #name: "Build image"
     runs-on: self-hosted
