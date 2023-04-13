@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  diplo-app:
+  - apiVersion: v2
+    appVersion: "1.0"
+    created: "2023-04-13T22:11:25.662529+05:00"
+    description: Helm deployment
+    digest: 95d97c9f6f52cc59f0bc858e30c01666217c60e3edad47eddd7fe330423066ec
+    name: diplo-app
+    type: application
+    urls:
+    - diplo-app-1.0.tgz
+    version: "1.0"
+generated: "2023-04-13T22:11:25.662227+05:00"
