@@ -23,7 +23,7 @@ jobs:
 
     steps:
     - name: test inherit
-      uses: diplo-app-build.yaml@develop
+      uses: https://github.com/lozovoya/diplo2/blob/develop/.github/workflows/diplo-app-build.yaml@develop
       secrets: inherit
 
     - uses: actions/checkout@v3
