@@ -15,6 +15,5 @@ func main() {
 		log.Fatal(err)
 	}
 	log.Println("the end!")
-	//qqqfgfdgdg
-	//defrfref
+
 }
