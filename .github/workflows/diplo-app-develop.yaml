@@ -25,7 +25,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: test inherit
-      uses: lozovoya/diplo2/blob/develop/.github/workflows/diplo-app-build.yaml
+      uses: lozovoya/diplo2/blob/develop/.github/workflows/diplo-app-build.yaml@develop
 
     - name: Set up Go
       uses: actions/setup-go@v3
