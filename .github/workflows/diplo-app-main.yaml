@@ -4,13 +4,12 @@ on:
   push:
     tags:
     - v1.*
-    branches:
-    - main
   pull_request:
     branches:
     - main
 
 env:
+  BRANCH: main
   IMAGE_ID: ghcr.io/${{ github.repository_owner }}/diplo-app
 
 jobs:
@@ -37,8 +36,8 @@ jobs:
     - name: Deploy
       run: |
         ssh -i ~/.ssh/id_rsa debian@${{ vars.KUBE_MASTER_IP }} \
-        "kubectl set image deploy/diplo-app --namespace=${GITHUB_REF_NAME} diplo-app=$IMAGE_ID-${GITHUB_REF_NAME}:${GITHUB_SHA} && \
-        kubectl rollout restart deploy diplo-app --namespace=${GITHUB_REF_NAME}"
+        "kubectl set image deploy/diplo-app --namespace=$BRANCH diplo-app=$IMAGE_ID-${GITHUB_REF_NAME}:${GITHUB_SHA} && \
+        kubectl rollout restart deploy diplo-app --namespace=$BRANCH"
 
 
 
