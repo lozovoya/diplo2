@@ -33,9 +33,9 @@ jobs:
         echo "${{ secrets.SSH_PRIV_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
 
+      #тут надо будет поменять IP мастера куба на прод кластер
     - name: Deploy
       run: |
-      #тут надо будет поменять IP мастера куба на прод кластер
         ssh -i ~/.ssh/id_rsa debian@${{ vars.KUBE_MASTER_IP }} \
         "kubectl set image deploy/diplo-app --namespace=${GITHUB_REF_NAME} diplo-app=$IMAGE_ID-${GITHUB_REF_NAME}:${GITHUB_SHA} && \
         kubectl rollout restart deploy diplo-app --namespace=${GITHUB_REF_NAME}"
